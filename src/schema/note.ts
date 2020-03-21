@@ -11,4 +11,7 @@ export default gql`
     getAllNotes: [Note!]
     getNote(_id: ID!): Note
   }
+  extend type Mutation {
+    saveNote(title: String!, content: String!): Note!
+  }
 `;
