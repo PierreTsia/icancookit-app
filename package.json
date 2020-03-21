@@ -17,6 +17,7 @@
     "@types/graphql": "14.0.7",
     "@types/graphql-depth-limit": "1.1.0",
     "@types/node": "11.9.4",
+    "@types/node-fetch": "^2.5.5",
     "graphql-depth-limit": "1.1.0",
     "graphql-import": "0.7.1",
     "graphql-import-node": "0.0.1",
