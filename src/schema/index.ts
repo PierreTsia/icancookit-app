@@ -1,17 +1,20 @@
-import { gql } from "apollo-server-express";
-import noteSchema from "./note";
-import customSchema from "./custom";
+import { gql } from 'apollo-server-express';
+import noteSchema from './note';
+import customSchema from './custom';
+import userSchema from './user';
+
 
 const linkSchema = gql`
-    type Query {
-        _: Boolean
-    }
-    type Mutation {
-        _: Boolean
-    }
-    type Subsciption {
-        _: Boolean
-    }
+  type Query {
+    _: Boolean
+  }
+  type Mutation {
+    _: Boolean
+  }
+  type Subsciption {
+    _: Boolean
+  }
 `;
 
-export default [linkSchema, noteSchema, customSchema];
+export default [linkSchema, userSchema, noteSchema, customSchema];
+

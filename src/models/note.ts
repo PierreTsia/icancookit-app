@@ -23,10 +23,6 @@ const schema: mongoose.SchemaDefinition = {
 
 const collectionName: string = "note";
 const noteSchema: mongoose.Schema = new mongoose.Schema(schema);
-/*
-const NoteModel = (conn: mongoose.Connection): mongoose.Model<INote> => {
-  return conn.model(collectionName, noteSchema);
-};*/
 
 const Note: mongoose.Model<NoteDocument> = mongoose.model(
   collectionName,
