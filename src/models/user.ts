@@ -1,5 +1,8 @@
 import * as mongoose from 'mongoose';
 import { createAvatar, encryptedPassword } from '../helpers/auth';
+import { As } from './common';
+
+export type UserId = string & As<'UserId'>;
 
 export interface UserDocument extends mongoose.Document {
   handle: string;
@@ -36,14 +39,14 @@ const schema: mongoose.SchemaDefinition = {
 const collectionName: string = 'user';
 const userSchema: mongoose.Schema = new mongoose.Schema(schema);
 
-userSchema.pre<UserDocument>('save', async function(next) {
+userSchema.pre<UserDocument>('save', async function (next) {
   if (!this.isModified('password')) {
     return next();
   }
   this.password = await encryptedPassword(this.password);
   next();
 });
-userSchema.pre<UserDocument>('save', function(next) {
+userSchema.pre<UserDocument>('save', function (next) {
   this.avatar = createAvatar(this.handle);
   next();
 });

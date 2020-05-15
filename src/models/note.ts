@@ -1,4 +1,4 @@
-import * as mongoose from "mongoose";
+import * as mongoose from 'mongoose';
 
 export interface NoteDocument extends mongoose.Document {
   title: string;
@@ -9,24 +9,21 @@ export interface NoteDocument extends mongoose.Document {
 const schema: mongoose.SchemaDefinition = {
   title: {
     type: String,
-    required: true
+    required: true,
   },
   content: {
     type: String,
-    required: true
+    required: true,
   },
   date: {
     type: Date,
-    required: true
-  }
+    required: true,
+  },
 };
 
-const collectionName: string = "note";
+const collectionName: string = 'note';
 const noteSchema: mongoose.Schema = new mongoose.Schema(schema);
 
-const Note: mongoose.Model<NoteDocument> = mongoose.model(
-  collectionName,
-  noteSchema
-);
+const Note: mongoose.Model<NoteDocument> = mongoose.model(collectionName, noteSchema);
 
 export default Note;
