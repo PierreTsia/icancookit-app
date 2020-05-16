@@ -3,7 +3,8 @@ import { ApolloError } from 'apollo-server-express';
 import { RecipeDocument, RecipeId } from './../models/recipe';
 import { Ctx, SaveRecipeArgs } from './types';
 import { UserId } from '../models/user';
-import SpoonService, { Entities } from '../services/spoon';
+import SpoonService from '../services/spoon';
+import { Entities } from '../services/types/spoon.model';
 
 export default {
   Query: {

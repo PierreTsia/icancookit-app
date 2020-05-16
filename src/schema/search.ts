@@ -1,3 +1,4 @@
+// @ts-ignore
 import { gql } from 'apollo-server-express';
 
 export default gql`
@@ -38,6 +39,18 @@ export default gql`
     pairingText: String
   }
 
+  type Equipment {
+    id: ID
+    name: String
+    image: String
+  }
+  type InstructionStep {
+    ingredients: [Ingredient]
+    number: Int
+    step: String
+    equipment: Equipment
+  }
+
   input SearchInput {
     max: Int
     queryString: String
@@ -45,5 +58,6 @@ export default gql`
   extend type Query {
     searchRecipes(searchInput: SearchInput): [SpoonRecipe]
     recipeDetails(spoonId: ID!): RecipeDetails
+    recipeInstructions(spoonId: ID!): [InstructionStep]
   }
 `;

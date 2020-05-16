@@ -1,6 +1,8 @@
+// @ts-ignore
 import { ApolloError } from 'apollo-server-express';
 import { Ctx } from './types';
-import SpoonService, { Entities, SpoonRecipe } from '../services/spoon';
+import SpoonService from '../services/spoon';
+import { Entities, SpoonRecipe } from '../services/types/spoon.model';
 interface SearchInputArgs {
   searchInput: {
     max: number;
@@ -31,6 +33,15 @@ export default {
         return await spoon.searchRecipeDetails(spoonId);
       } catch (e) {
         console.log(e);
+      }
+    },
+    recipeInstructions: async (_: any, { spoonId }: { spoonId: string }, { currentUser }: Ctx) => {
+      if (!currentUser) throw new ApolloError('Authentication required');
+      try {
+        const spoon = new SpoonService(Entities.RECIPES);
+        return await spoon.searchRecipeInstructions(spoonId);
+      } catch (e) {
+        throw new ApolloError(e || 'Error retrieving instructions');
       }
     },
   },
