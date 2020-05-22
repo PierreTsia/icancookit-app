@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { NoteDocument } from '../models/note';
-import { UserDocument, UserId } from '../models/user';
+import { UserDocument } from '../models/user';
 import { DifficultyLevel, RecipeDocument } from '../models/recipe';
 
 export interface Ctx {

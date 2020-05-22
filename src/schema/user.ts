@@ -18,4 +18,7 @@ export default gql`
     signup(email: String!, password: String!, handle: String!): AuthPayload
     signin(email: String!, password: String!): AuthPayload
   }
+  extend type Query {
+    getCurrentUser: User
+  }
 `;
