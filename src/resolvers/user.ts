@@ -7,9 +7,9 @@ import { UserDocument } from '../models/user';
 
 export default {
   Query: {
-    getCurrentUser: async (_: any, args: any, { currentUser, User }: Ctx): Promise<UserDocument> => {
+    getCurrentUser: async (_: any, args: any, { currentUser, User }: Ctx): Promise<UserDocument | null> => {
       if (!currentUser) {
-        throw new ApolloError('Authentication required');
+        return null;
       }
       try {
         const user = await User.findById(currentUser._id);
