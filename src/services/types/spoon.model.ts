@@ -22,8 +22,6 @@ export class Ingredient {
   amount: number;
   unit: string;
   constructor(obj: any) {
-    console.log('obj Ingredieny', obj);
-
     this.aisle = obj.aisle;
     this.amount = obj.amount;
     this.consistency = obj.consistency;
@@ -58,7 +56,7 @@ export class SpoonRecipe {
     this.instructions = obj.instructions;
     this.servings = obj.servings;
     this.sourceUrl = obj.sourceUrl;
-    this.image = `${BASE_IMG_URL}${obj.id}-${IMG_SIZE.MEDIUM}.${obj.imageType}`;
+    this.image = `${BASE_IMG_URL}${obj.id}-${IMG_SIZE.MEDIUM}.jpg`;
     this.dishTypes = obj.dishTypes;
     this.sourceName = obj.sourceName;
     this.sourceUrl = obj.sourceUrl;
@@ -80,4 +78,33 @@ export class SpoonStep {
     this.step = obj.step;
     this.equipment = obj.equipment && obj.equipment.id ? obj.equipment : null;
   }
+}
+
+export enum Cuisines {
+  African = 'African',
+  American = 'American',
+  British = 'British',
+  Cajun = 'Cajun',
+  Caribbean = 'Caribbean',
+  Chinese = 'Chinese',
+  Eastern = 'Eastern',
+  European = 'European',
+  French = 'French',
+  German = 'German',
+  Greek = 'Greek',
+  Indian = 'Indian',
+  Irish = 'Irish',
+  Italian = 'Italian',
+  Japanese = 'Japanese',
+  Jewish = 'Jewish',
+  Korean = 'Korean',
+  Latin_American = 'Latin American',
+  Mediterranean = 'Mediterranean',
+  Mexican = 'Mexican',
+  Middle_Eastern = 'Middle Eastern',
+  Nordic = 'Nordic',
+  Southern = 'Southern',
+  Spanish = 'Spanish',
+  Thai = 'Thai',
+  Vietnamese = 'Thai',
 }

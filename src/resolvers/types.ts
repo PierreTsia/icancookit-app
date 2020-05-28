@@ -34,3 +34,18 @@ export interface AuthPayload {
   token: string;
   user: UserDocument;
 }
+export interface AdvancedSearchParameter {
+  value: string | boolean | number;
+  slug: ParamSlugs;
+  type: string;
+}
+
+export enum ParamSlugs {
+  addRecipeInformation = 'addRecipeInformation',
+  maxFat = 'maxFat',
+  maxReadyTime = 'maxReadyTime',
+  cuisine = 'cuisine',
+  fillIngredients = 'fillIngredients',
+  excludeIngredients = 'excludeIngredients',
+  addRecipeNutrition='addRecipeNutrition'
+}

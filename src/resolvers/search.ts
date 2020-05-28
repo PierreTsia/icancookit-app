@@ -1,20 +1,36 @@
 // @ts-ignore
 import { ApolloError } from 'apollo-server-express';
-import { Ctx } from './types';
+import { Ctx, AdvancedSearchParameter } from './types';
 import SpoonService from '../services/spoon';
 import { Entities, SpoonRecipe } from '../services/types/spoon.model';
 interface SearchInputArgs {
-  searchInput: {
-    max: number;
-    queryString: string;
-  };
+  max: number;
+  queryString: string;
+}
+
+interface AdvancedSearchInputArgs extends SearchInputArgs {
+  parameters: AdvancedSearchParameter[];
 }
 
 export default {
   Query: {
+    advancedSearchRecipes: async (
+      _: any,
+      { advancedSearchInput }: { advancedSearchInput: AdvancedSearchInputArgs },
+      { currentUser }: Ctx
+    ): Promise<SpoonRecipe[]> => {
+      if (!currentUser) throw new ApolloError('Authentication required');
+      try {
+        const { queryString, max, parameters } = advancedSearchInput;
+        const spoon = new SpoonService(Entities.RECIPES);
+        return await spoon.advancedSearchRecipes(queryString, max, parameters);
+      } catch (e) {
+        throw new ApolloError(e || 'Advanced Search error');
+      }
+    },
     searchRecipes: async (
       _: any,
-      { searchInput }: SearchInputArgs,
+      { searchInput }: { searchInput: SearchInputArgs },
       { currentUser }: Ctx
     ): Promise<SpoonRecipe[]> => {
       if (!currentUser) throw new ApolloError('Authentication required');

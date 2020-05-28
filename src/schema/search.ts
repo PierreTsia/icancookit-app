@@ -54,9 +54,18 @@ export default gql`
   input SearchInput {
     max: Int
     queryString: String
+    parameters: [Parameter]
   }
+
+  input Parameter {
+    type: String
+    value: String
+    slug: String
+  }
+
   extend type Query {
     searchRecipes(searchInput: SearchInput): [SpoonRecipe]
+    advancedSearchRecipes(advancedSearchInput: SearchInput): [RecipeDetails]
     recipeDetails(spoonId: ID!): RecipeDetails
     recipeInstructions(spoonId: ID!): [InstructionStep]
   }
